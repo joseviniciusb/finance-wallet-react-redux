@@ -2,25 +2,25 @@ import React from 'react';
 
 class Wallet extends React.Component {
   state = {
-    currencies: [],
-  }
+    currenciesNames: [],
+    currenciesData: {},
+  };
 
-  componentDidMount() {
-    fetch(
-      'https://economia.awesomeapi.com.br/json/all',
-    )
+  async componentDidMount() {
+    await fetch('https://economia.awesomeapi.com.br/json/all')
       .then((res) => res.json())
       .then((json) => {
+        console.log(json);
+        console.log(Object.keys(json));
         this.setState({
-          currencies: json,
-
+          currenciesNames: Object.keys(json),
+          currenciesData: json,
         });
       });
   }
 
   render() {
-    const { currencies } = this.state;
-    console.log(currencies);
+    const { currenciesNames, currenciesData } = this.state;
     return (
       <>
         <header>
@@ -35,7 +35,13 @@ class Wallet extends React.Component {
           </label>
           <label htmlFor="currency">
             Moeda:
-            <select data-testid="currency-input" aria-label="currency" />
+            <select data-testid="currency-input" aria-label="currency">
+              {currenciesNames
+                .filter((item) => item !== 'USDT')
+                .map((item) => (
+                  <option key={ item }>{item}</option>
+                ))}
+            </select>
           </label>
           <label htmlFor="method">
             Método de pagamento:
@@ -47,7 +53,11 @@ class Wallet extends React.Component {
           </label>
           <label htmlFor="description">
             Descrição:
-            <input data-testid="description-input" name="description" type="text" />
+            <input
+              data-testid="description-input"
+              name="description"
+              type="text"
+            />
           </label>
           <button type="button">Adicionar despesa</button>
         </form>
