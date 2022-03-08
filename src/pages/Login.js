@@ -4,7 +4,7 @@ class Login extends React.Component {
   state = {
     email: '',
     password: '',
-
+    buttonIsDisable: false,
   };
 
   handleChange = ({ target }) => {
@@ -14,8 +14,11 @@ class Login extends React.Component {
   };
 
   render() {
-    const { email, password } = this.state;
-
+    const { email, password, buttonIsDisable } = this.state;
+    const MAX_CHARACTER = 6;
+    if (password.length >= MAX_CHARACTER) {
+      console.log('é isso');
+    }
     return (
       <div className="loginContainer">
         <form>
@@ -40,7 +43,13 @@ class Login extends React.Component {
             />
           </label>
 
-          <button type="button">Enviar</button>
+          <button
+            disabled={ buttonIsDisable }
+            onSubmit={ this.handleSubmit }
+            type="button"
+          >
+            Enviar
+          </button>
         </form>
       </div>
     );

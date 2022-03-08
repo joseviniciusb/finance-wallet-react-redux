@@ -1,21 +1,20 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Wallet from './pages/Wallet';
 
 function App() {
   return (
-    <>
-      <Router>
-        {/* A <Switch> looks through its children <Route>s and
-        renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/">
-            <Login />
-          </Route>
-        </Switch>
-      </Router>
-      
-    </>
+    <Router>
+      <Switch>
+        <Route path="/carteira">
+          <Wallet />
+        </Route>
+        <Route path="/">
+          <Login />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
