@@ -1,27 +1,60 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { saveUserEmail } from '../actions';
+
+const MAX_CHARACTER = 6;
+
+function validateEmail(email) {
+  return /^\S+@\S+\.\S+$/.test(email);
+}
 
 class Login extends React.Component {
   state = {
     email: '',
     password: '',
-    buttonIsDisable: false,
+    buttonIsEnabled: false,
   };
 
+  componentDidMount() {
+    console.log('loadLoginPage');
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { email, password } = this.state;
+    if (prevState.email !== email || prevState.password !== password) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({
+        buttonIsEnabled:
+          validateEmail(email) && password.length >= MAX_CHARACTER,
+      });
+    }
+  }
+
   handleChange = ({ target }) => {
+    // console.log('depois', validated);
     this.setState({
       [target.name]: target.value,
     });
   };
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { email } = this.state;
+    const { saveEmail, history } = this.props;
+    console.log('email', email);
+    console.log('submit');
+    saveEmail(email);
+    history.push('/carteira');
+  };
+
   render() {
-    const { email, password, buttonIsDisable } = this.state;
-    const MAX_CHARACTER = 6;
-    if (password.length >= MAX_CHARACTER) {
-      console.log('é isso');
-    }
+    const { email, password, buttonIsEnabled } = this.state;
+
     return (
       <div className="loginContainer">
-        <form>
+        <form onSubmit={ this.handleSubmit }>
           <label htmlFor="email">
             User:
             <input
@@ -43,12 +76,8 @@ class Login extends React.Component {
             />
           </label>
 
-          <button
-            disabled={ buttonIsDisable }
-            onSubmit={ this.handleSubmit }
-            type="button"
-          >
-            Enviar
+          <button disabled={ !buttonIsEnabled } type="submit">
+            Entrar
           </button>
         </form>
       </div>
@@ -56,4 +85,17 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  saveEmail: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  saveEmail: (email) => {
+    dispatch(saveUserEmail(email));
+  },
+});
+
+export default connect(null, mapDispatchToProps)(Login);
