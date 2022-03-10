@@ -17,10 +17,6 @@ class Login extends React.Component {
     buttonIsEnabled: false,
   };
 
-  componentDidMount() {
-    console.log('loadLoginPage');
-  }
-
   componentDidUpdate(prevProps, prevState) {
     const { email, password } = this.state;
     if (prevState.email !== email || prevState.password !== password) {
@@ -43,8 +39,6 @@ class Login extends React.Component {
     e.preventDefault();
     const { email } = this.state;
     const { saveEmail, history } = this.props;
-    console.log('email', email);
-    console.log('submit');
     saveEmail(email);
     history.push('/carteira');
   };
