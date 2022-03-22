@@ -20,11 +20,6 @@ export default (state = INITIAL_STATE, action) => {
   case 'DELETE_EXPENSE':
     filteredExpenses = state.expenses.filter((item) => item.id !== action.payload);
     return { ...state, expenses: filteredExpenses };
-  case 'EDIT_EXPENSE':
-    const editExpense = state.expenses.filter((item) => item.id === action.payload);
-    console.log(editExpense[0].value);
-    console.log({ ...state });
-    return { ...state, expenses: editExpense };
   case 'UPDATE_CURRENCIES':
     return {
       ...state,

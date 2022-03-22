@@ -21,11 +21,6 @@ export const deleteExpense = (expenseId) => ({
   payload: expenseId,
 });
 
-export const editExpense = (expenseId) => ({
-  type: 'EDIT_EXPENSE',
-  payload: expenseId,
-});
-
 export const updateWallet = (wallet) => ({
   type: 'UPDATE_WALLET',
   payload: wallet,
