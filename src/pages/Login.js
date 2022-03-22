@@ -17,19 +17,22 @@ class Login extends React.Component {
     buttonIsEnabled: false,
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    const { email, password } = this.state;
+    if (prevState.email !== email || prevState.password !== password) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({
+        buttonIsEnabled:
+          validateEmail(email) && password.length >= MAX_CHARACTER,
+      });
+    }
+  }
+
   handleChange = ({ target }) => {
-    this.setState(
-      {
-        [target.name]: target.value,
-      },
-      () => {
-        const { email, password } = this.state;
-        this.setState({
-          buttonIsEnabled:
-            validateEmail(email) && password.length >= MAX_CHARACTER,
-        });
-      },
-    );
+    // console.log('depois', validated);
+    this.setState({
+      [target.name]: target.value,
+    });
   };
 
   handleSubmit = (e) => {
