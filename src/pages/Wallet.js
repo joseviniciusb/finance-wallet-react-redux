@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { addExpense, deleteExpense } from '../actions';
+import { addExpense, deleteExpense, editExpense } from '../actions';
 
 const defaultForm = {
   value: 0,
@@ -56,7 +56,7 @@ class Wallet extends React.Component {
   };
 
   renderExpenses = (expenses) => {
-    const { dispatchDeleteExpense } = this.props;
+    const { dispatchDeleteExpense, dispatchEditExpense } = this.props;
 
     return expenses.map((item) => (
       <tr key={ item.id }>
@@ -65,17 +65,19 @@ class Wallet extends React.Component {
         <td>{item.method}</td>
         <td>{parseFloat(item.value).toFixed(2)}</td>
         <td>{this.checkCurrency(item.currency)}</td>
+        <td>{parseFloat(item.exchangeRates[item.currency].ask).toFixed(2)}</td>
         <td>
-          {parseFloat(item.exchangeRates[item.currency].ask).toFixed(2)}
-        </td>
-        <td>
-          {(item.exchangeRates[item.currency].ask * item.value).toFixed(
-            2,
-          )}
+          {(item.exchangeRates[item.currency].ask * item.value).toFixed(2)}
         </td>
         <td>Real</td>
         <td>
-          <button data-testid="edit-btn" type="button">Editar</button>
+          <button
+            data-testid="edit-btn"
+            type="button"
+            onClick={ () => dispatchEditExpense(item.id) }
+          >
+            Editar
+          </button>
           /
           <button
             data-testid="delete-btn"
@@ -87,12 +89,12 @@ class Wallet extends React.Component {
         </td>
       </tr>
     ));
-  }
+  };
 
-  calculateTotal = (expenses) => (expenses.reduce(
+  calculateTotal = (expenses) => expenses.reduce(
     (acc, item) => acc + item.exchangeRates[item.currency].ask * item.value,
     0,
-  ))
+  );
 
   render() {
     const { currenciesNames, form } = this.state;
@@ -101,9 +103,7 @@ class Wallet extends React.Component {
       <>
         <header>
           <span data-testid="email-field">{email}</span>
-          <span data-testid="total-field">
-            { this.calculateTotal(expenses) }
-          </span>
+          <span data-testid="total-field">{this.calculateTotal(expenses)}</span>
           <span data-testid="header-currency-field"> BRL </span>
         </header>
         <form onSubmit={ (e) => this.handleSubmit(e) }>
@@ -195,9 +195,7 @@ class Wallet extends React.Component {
               <th>Editar/Excluir</th>
             </tr>
           </thead>
-          <tbody>
-            { this.renderExpenses(expenses) }
-          </tbody>
+          <tbody>{this.renderExpenses(expenses)}</tbody>
         </table>
       </>
     );
@@ -207,6 +205,7 @@ class Wallet extends React.Component {
 Wallet.propTypes = {
   email: PropTypes.string.isRequired,
   dispatchDeleteExpense: PropTypes.func.isRequired,
+  dispatchEditExpense: PropTypes.func.isRequired,
   dispatchAddExpense: PropTypes.func.isRequired,
   expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
@@ -217,6 +216,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   dispatchDeleteExpense: (id) => {
     dispatch(deleteExpense(id));
+  },
+  dispatchEditExpense: (id) => {
+    dispatch(editExpense(id));
   },
 });
 
