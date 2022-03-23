@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/app-toot-name/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/app-toot-name/static/js/main.634db812.chunk.js",
-    "main.js.map": "/app-toot-name/static/js/main.634db812.chunk.js.map",
-    "runtime-main.js": "/app-toot-name/static/js/runtime-main.cfc30c8d.js",
-    "runtime-main.js.map": "/app-toot-name/static/js/runtime-main.cfc30c8d.js.map",
-    "static/js/2.6a56006e.chunk.js": "/app-toot-name/static/js/2.6a56006e.chunk.js",
-    "static/js/2.6a56006e.chunk.js.map": "/app-toot-name/static/js/2.6a56006e.chunk.js.map",
-    "index.html": "/app-toot-name/index.html",
-    "precache-manifest.35b5909f4b2c7063124eff7a2f74e57c.js": "/app-toot-name/precache-manifest.35b5909f4b2c7063124eff7a2f74e57c.js",
-    "service-worker.js": "/app-toot-name/service-worker.js",
-    "static/css/main.5ecd60fb.chunk.css.map": "/app-toot-name/static/css/main.5ecd60fb.chunk.css.map",
-    "static/js/2.6a56006e.chunk.js.LICENSE.txt": "/app-toot-name/static/js/2.6a56006e.chunk.js.LICENSE.txt"
+    "main.css": "/trybe-wallet/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/trybe-wallet/static/js/main.366ebc30.chunk.js",
+    "main.js.map": "/trybe-wallet/static/js/main.366ebc30.chunk.js.map",
+    "runtime-main.js": "/trybe-wallet/static/js/runtime-main.2e2bea36.js",
+    "runtime-main.js.map": "/trybe-wallet/static/js/runtime-main.2e2bea36.js.map",
+    "static/js/2.6a56006e.chunk.js": "/trybe-wallet/static/js/2.6a56006e.chunk.js",
+    "static/js/2.6a56006e.chunk.js.map": "/trybe-wallet/static/js/2.6a56006e.chunk.js.map",
+    "index.html": "/trybe-wallet/index.html",
+    "precache-manifest.e3e8e88e5f0a88a84e54f57ef7d6ef3c.js": "/trybe-wallet/precache-manifest.e3e8e88e5f0a88a84e54f57ef7d6ef3c.js",
+    "service-worker.js": "/trybe-wallet/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/trybe-wallet/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.6a56006e.chunk.js.LICENSE.txt": "/trybe-wallet/static/js/2.6a56006e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.cfc30c8d.js",
+    "static/js/runtime-main.2e2bea36.js",
     "static/js/2.6a56006e.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.634db812.chunk.js"
+    "static/js/main.366ebc30.chunk.js"
   ]
 }
