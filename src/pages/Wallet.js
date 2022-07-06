@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './Wallet.css';
 import { addExpense, deleteExpense, editExpense } from '../actions';
+import image from '../image.jpg';
 
 const defaultForm = {
   value: 0,
@@ -201,6 +202,13 @@ class Wallet extends React.Component {
           </thead>
           <tbody>{this.renderExpenses(expenses)}</tbody>
         </table>
+        <div className="finance-image-background-container">
+          <img
+            alt="imagem sobre finanças"
+            className="finance-image-background"
+            src={ image }
+          />
+        </div>
       </>
     );
   }
