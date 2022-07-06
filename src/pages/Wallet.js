@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
+import './Wallet.css';
 import { addExpense, deleteExpense, editExpense } from '../actions';
 
 const defaultForm = {
@@ -101,12 +101,16 @@ class Wallet extends React.Component {
     const { email, expenses } = this.props;
     return (
       <>
-        <header>
-          <span data-testid="email-field">{email}</span>
-          <span data-testid="total-field">{this.calculateTotal(expenses)}</span>
+        <header className="Header">
+          <span className="EmailField" data-testid="email-field">
+            {email}
+          </span>
+          <span className="TotalField" data-testid="total-field">
+            {this.calculateTotal(expenses)}
+          </span>
           <span data-testid="header-currency-field"> BRL </span>
         </header>
-        <form onSubmit={ (e) => this.handleSubmit(e) }>
+        <form className="Form" onSubmit={ (e) => this.handleSubmit(e) }>
           <label htmlFor="value">
             Valor:
             <input
