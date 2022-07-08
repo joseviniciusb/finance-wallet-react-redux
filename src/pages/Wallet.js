@@ -103,6 +103,12 @@ class Wallet extends React.Component {
     return (
       <>
         <header className="Header">
+          <h1 className="text-3xl font-bold underline">Hello world!</h1>
+          <h1
+            className="h-32 w-32 bg-gradient-to-r from-black to-gray-400"
+          >
+            testando tailwind
+          </h1>
           <span className="EmailField" data-testid="email-field">
             {email}
           </span>

@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: rgb(160, 102, 102);
+}
+
+.finance-background-container img {
+  float: right;
+  height: 550px;
+  position: flex;
+}

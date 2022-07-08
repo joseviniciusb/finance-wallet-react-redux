@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import image from '../image.jpg';
 
 import { saveUserEmail } from '../actions';
 
@@ -47,34 +48,44 @@ class Login extends React.Component {
     const { email, password, buttonIsEnabled } = this.state;
 
     return (
-      <div className="loginContainer">
-        <form onSubmit={ this.handleSubmit }>
-          <label htmlFor="email">
-            User:
-            <input
-              name="email"
-              type="email"
-              data-testid="email-input"
-              onChange={ this.handleChange }
-              value={ email }
-            />
-          </label>
-          <label htmlFor="password">
-            Password:
-            <input
-              name="password"
-              type="password"
-              data-testid="password-input"
-              onChange={ this.handleChange }
-              value={ password }
-            />
-          </label>
 
-          <button disabled={ !buttonIsEnabled } type="submit">
-            Entrar
-          </button>
-        </form>
-      </div>
+      <>
+        <div className="loginContainer">
+          <form onSubmit={ this.handleSubmit }>
+            <label htmlFor="email">
+              User:
+              <input
+                name="email"
+                type="email"
+                data-testid="email-input"
+                onChange={ this.handleChange }
+                value={ email }
+              />
+            </label>
+            <label htmlFor="password">
+              Password:
+              <input
+                name="password"
+                type="password"
+                data-testid="password-input"
+                onChange={ this.handleChange }
+                value={ password }
+              />
+            </label>
+
+            <button disabled={ !buttonIsEnabled } type="submit">
+              Entrar
+            </button>
+          </form>
+        </div>
+        <div className="finance-background-container">
+          <img
+            alt="imagem sobre finanças"
+            className="finance-image-background"
+            src={ image }
+          />
+        </div>
+      </>
     );
   }
 }
